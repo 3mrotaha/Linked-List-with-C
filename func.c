@@ -11,7 +11,7 @@
  struct node *head = NULL;
  struct node *tail = NULL;
 
- void Addfirst(int value){
+ void Addfirst(float value){
 	struct node *new_node;
 	new_node = (struct node*) malloc(sizeof(*new_node));
 	if(new_node != NULL){
@@ -25,7 +25,7 @@
 	
  }
  
- void Deletefirst(){
+ void Deletefirst(void){
 	 struct node *current;
 	 current = head;
 	 head = head->next;
@@ -33,7 +33,7 @@
 	 free(current);
  }
 
- void AddLast(int value){
+ void AddLast(float value){
 	 struct node* new_node;
 	 new_node = (struct node*) malloc(sizeof(*new_node));
 	 if(new_node != NULL){
@@ -50,7 +50,7 @@
 	 }
  }
  
- void DeleteLast(){
+ void DeleteLast(void){
 	struct node *previous = NULL;
 	struct node *current = head;
 	while(current != tail && tail != head){
@@ -69,7 +69,7 @@
 	}
  }
  
- void AddBefore(int Element, int value){
+ void AddBefore(float Element, float value){
 	 struct node *new_node;
 	 struct node *current = head;
 	 struct node *previous = NULL;
@@ -95,7 +95,7 @@
  }
  
  
- void DeleteElement(int Element){
+ void DeleteElement(float Element){
 	 struct node *current = head;
 	 struct node *previous = NULL;
 	  
@@ -120,9 +120,9 @@
 	 }
  }
  
- void DisplayList(){
+ void DisplayList(void){
 	 struct node *point_to_node;
 	 for(point_to_node = head; point_to_node != NULL; point_to_node = point_to_node->next)
-		 printf("%d ", point_to_node->data);
+		 printf("%.3f ", point_to_node->data);
  }
  
