@@ -6,11 +6,13 @@
  **************************************************************************/
  
  
+ 
+ 
  /*************************************************************** 
   * Defining the Node Type                                      *
   ***************************************************************/
  struct node{
-	 int data;
+	 float data;
 	 struct node* next;
  };
  
@@ -18,43 +20,43 @@
   * Addfirst : This function is used to add element to be the      *
   *			  first element in the Linked List.                    *
   ******************************************************************/
- void Addfirst(int value);
+ void Addfirst(float value);
  
  /******************************************************************
   * Deletefirst : This function is used to Delete the first        *
   *				element in the Linked List.                        *
   ******************************************************************/
- void Deletefirst();
+ void Deletefirst(void);
 
  /****************************************************************** 
   * AddLast : This function is used to add element to be the       *
   *			 last element in the Linked List.                      *
   ******************************************************************/
- void AddLast(int value);
+ void AddLast(float value);
  
  /******************************************************************
   * DeleteLast : This function is used to Delete the last          *
   *				element in the Linked List.                        *
   ******************************************************************/
- void DeleteLast();
+ void DeleteLast(void);
  
  /******************************************************************
   * AddBefore : This function is used to Add an element before     *
   *				an existed element in the Linked List.             *
   ******************************************************************/
- void AddBefore(int Element, int value);
+ void AddBefore(float Element, float value);
  
  /******************************************************************
   * DeleteElement : This function is used to Delete any            *
   *			 	element in the Linked List.                        *
   ******************************************************************/
- void DeleteElement(int Element);
+ void DeleteElement(float Element);
  
  /******************************************************************
   * DisplayList : This function is used to Display the elements    *
   *				Added to the Linked List.                          *
   ******************************************************************/
- void DisplayList();
+ void DisplayList(void);
  
  
  
