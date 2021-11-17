@@ -228,7 +228,7 @@ static void Detect_Error(const char *message){
  }
  
  void DisplayList(void){
-	 struct node *point_to_node;
+	 struct node *point_to_node; 
 	 if(head == NULL){
 		Detect_Error("List Is Empty");
 	 }
