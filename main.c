@@ -10,10 +10,10 @@
 int main(){
 	DataType data;
 	int command;
-	printf("\ncommands : \n>> 1 to add first, 2 to delete first\n>> 3 to add last, 4 to delete last \n>> 5 to add before an existed element, 6 to delete any element\n>> 7 to Add by Index\n>> 0 to exit");
+	printf("\ncommands :\n>> 1 to add first, 2 to delete first\n>> 3 to add last, 4 to delete last \n>> 5 to add before an existed element, 6 to delete any element\n>> 7 to Add by Index\n>> 0 to exit");
 	while(1){
 		printf("\nEnter a command : ");
-		scanf("%d", &command);
+		scanf("%d", &command); 
 		
 		if(!command){break;}
 		else if(command == 1){
