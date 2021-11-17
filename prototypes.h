@@ -11,17 +11,17 @@
  /****************************************************************** 
   * To control the date being read by the user                     *
   ******************************************************************/
- #define DATA_READ_PLACEHOLDER	"%f"
+ #define DATA_READ_PLACEHOLDER	"%d" 
  
  /****************************************************************** 
   * To control the Display of data stored in the linked list       *
   ******************************************************************/
- #define DATA_PRINT_PLACEHOLDER	"%.3f "
+ #define DATA_PRINT_PLACEHOLDER	"%d "
  
  /****************************************************************** 
   * Type of the data going to be stored in the linked list         *
   ******************************************************************/
- typedef float DataType;
+ typedef int DataType;
   
  /****************************************************************** 
   * Addfirst : This function is used to add element to be the      *
