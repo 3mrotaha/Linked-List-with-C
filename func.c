@@ -29,7 +29,15 @@
 static void Detect_Error(const char *message){
 	if(message != NULL){
 		printf("Error : %s\n", message);
+		exit(EXIT_FAILURE);
 	}
+}
+
+static void check_Empty(const char *message){
+	 if(head == NULL){
+		 if(message != NULL)
+			printf("%s\n", message);
+	 }	
 }
 
  void Addfirst(DataType value){
@@ -45,21 +53,28 @@ static void Detect_Error(const char *message){
 		}
 	}
 	else{
-		Detect_Error("Node wasn't created, malloc didn't work");
+		Detect_Error("NODE WASN'T CREATED, MALLOC DIDN'T WORK");
 	}
 	
  }
  
  void Deletefirst(void){
-	 struct node *current;
+	 struct node *current = head;
 	 if(head == NULL){
-		Detect_Error("List Is Already Empty");
+		check_Empty("CAN'T DELETE DATA FROM AN EMPTY LIST.");
 	 }
 	 else{
-		 current = head;
-		 head = head->next;
-		 current->next = NULL;
-		 free(current);
+		 if(tail == head){ 
+			free(current);
+			head = NULL; tail = NULL;
+		 }
+		 else{
+			 current = head;
+			 head = head->next;
+			 current->next = NULL;
+			 free(current);
+		 }
+		 check_Empty("YOU'VE DELETED THE LAST ELEMENT! LIST IS EMPTY.");
 	 }
  }
 
@@ -80,7 +95,7 @@ static void Detect_Error(const char *message){
 		 }
 	 }
 	 else{
-		Detect_Error("Node wasn't created, malloc didn't work");
+		Detect_Error("NODE WASN'T CREATED, MALLOC DIDN'T WORK");
 	}
  }
  
@@ -89,7 +104,7 @@ static void Detect_Error(const char *message){
 	struct node *current = head;
 	
 	if(head == NULL){
-		Detect_Error("List Is Already Empty");
+		check_Empty("CAN'T DELETE DATA FROM AN EMPTY LIST.");
 	}
 	else{
 		while(current != tail && tail != head){
@@ -103,9 +118,9 @@ static void Detect_Error(const char *message){
 		}
 		else{
 			free(current);
-			tail = NULL;
-			head = tail;
+			tail = NULL; head = NULL;
 		}
+		check_Empty("YOU'VE DELETED THE LAST DATA! LIST IS EMPTY.");
 	}
  }
  
@@ -116,10 +131,10 @@ static void Detect_Error(const char *message){
 	 
 	 new_node = (struct node*) malloc(sizeof(*new_node));
 	 if(new_node == NULL){
-		Detect_Error("Node wasn't created, malloc didn't work");
+		Detect_Error("NODE WASN'T CREATED, MALLOC DIDN'T WORK");
 	 }
 	 else if(head == NULL){
-		Detect_Error("ELEMENT CAN'T BE FOUND AS LIST IS ALREADY EMPTY");
+		check_Empty("CAN'T FIND DATA INSIDE AN EMPTY LIST.");
 	 }
 	 else{
 		 new_node->data = value;
@@ -129,7 +144,7 @@ static void Detect_Error(const char *message){
 			 current = current->next;
 		 }
 		 if(current == tail && current->data != Element){
-			Detect_Error("ELEMENT IS NOT EXISTED IN THE LIST");
+			Detect_Error("DATA IS NOT FOUND IN THE LIST");
 		}
 		else{
 			 if(head != NULL && tail != NULL){
@@ -152,7 +167,7 @@ static void Detect_Error(const char *message){
 	 struct node *current = NULL;
 	 struct node *previous = NULL;
 	 if(head == NULL){
-		Detect_Error("List Is Already Empty");
+		check_Empty("CAN'T DELETE DATA FROM AN EMPTY LIST.");
 	 }
 	 else{
 		 current = head;
@@ -161,7 +176,7 @@ static void Detect_Error(const char *message){
 			 current = current->next;
 		 }
 		 if(current == tail && current->data != Element){
-			Detect_Error("ELEMENT IS NOT EXISTED IN THE LIST");
+			Detect_Error("DATA IS NOT EXISTED IN THE LIST");
 		}
 		 else{
 			 if(current != NULL && current != head && current != tail){
@@ -169,16 +184,21 @@ static void Detect_Error(const char *message){
 				 current->next = NULL;
 				 free(current);
 			 }
-			 else if(current == head){
+			 else if(current == head && head != tail){
 				 head = current->next;
 				 current->next = NULL;
 				 free(current);
 			 }
-			 else if(current == tail){
+			 else if(current == tail && tail != head){
 				 tail = previous;
 				 previous->next = NULL;
 				 free(current);
 			 }
+			 else if(head == tail){
+				free(current);
+				head = NULL; tail = NULL;
+			 }
+			check_Empty("YOU'VE DELETED THE LAST DATA! LIST IS EMPTY.");
 		 }
 	 }
  }
@@ -190,7 +210,7 @@ static void Detect_Error(const char *message){
 	int index_count = 0;
 	new_node = (struct node*) malloc(sizeof(*new_node));
 	if(new_node == NULL){
-		Detect_Error("Node wasn't created, malloc didn't work");
+		Detect_Error("NODE WASN'T CREATED, MALLOC DIDN'T WORK");
 	}
 	else{
 		new_node->data = value;
@@ -200,7 +220,7 @@ static void Detect_Error(const char *message){
 			tail->next = NULL;
 		}
 		else if(head == NULL && Index > 0){
-			Detect_Error("LIST IS EMPTY, PLEASE ENTER A 0 INDEX");
+			check_Empty("LIST IS EMPTY, ENTER INDEX 0 TO ADD YOUR FIRST DATA");
 		}
 		else{
 			current = head;
@@ -229,9 +249,7 @@ static void Detect_Error(const char *message){
  
  void DisplayList(void){
 	 struct node *point_to_node; 
-	 if(head == NULL){
-		Detect_Error("List Is Empty");
-	 }
+
 	 for(point_to_node = head; point_to_node != NULL; point_to_node = point_to_node->next)
 		 printf(DATA_PRINT_PLACEHOLDER, point_to_node->data);
  }
